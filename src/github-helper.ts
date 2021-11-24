@@ -23,28 +23,28 @@ export async function createPullRequest(
   if (process.env.GITHUB_REPOSITORY !== undefined) {
     const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/')
 
-    // Get PR title
-    const title =
-      github.context.payload &&
-      github.context.payload.pull_request &&
-      github.context.payload.pull_request.title
-    core.info(`Using body '${title}'`)
+//     // Get PR title
+//     const title =
+//       github.context.payload &&
+//       github.context.payload.pull_request &&
+//       github.context.payload.pull_request.title
+//     core.info(`Using body '${title}'`)
 
-    // Get PR body
-    const body =
-      github.context.payload &&
-      github.context.payload.pull_request &&
-      github.context.payload.pull_request.body
-    core.info(`Using body '${body}'`)
+//     // Get PR body
+//     const body =
+//       github.context.payload &&
+//       github.context.payload.pull_request &&
+//       github.context.payload.pull_request.body
+//     core.info(`Using body '${body}'`)
 
     // Create PR
     const pull = await octokit.pulls.create({
       owner,
       repo,
       head: prBranch,
-      base: inputs.branch,
-      title,
-      body
+      base: inputs.branch
+//       title,
+//       body
     })
 
     // Apply labels
